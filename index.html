@@ -2,22 +2,23 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>2 meses ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Felices 2 meses ❤️</title>
 
 <style>
 body {
   margin: 0;
   font-family: Arial;
   overflow: hidden;
-  background: white;
-  text-align: center;
+  background: black;
+  color: white;
 }
 
-/* CENTRADO */
+/* CENTRADO FULL SCREEN */
 .pantalla {
   position: fixed;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,7 +28,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+  width: 90%;
+  max-width: 400px;
 }
 
 .oculto {
@@ -35,9 +37,12 @@ body {
   pointer-events: none;
 }
 
+/* IMAGEN RESPONSIVE */
 img {
-  width: 230px;
-  margin-bottom: 10px;
+  width: 80%;
+  max-width: 280px;
+  height: auto;
+  margin-bottom: 15px;
 }
 
 /* BOTONES */
@@ -45,37 +50,37 @@ img {
   position: relative;
   display: flex;
   justify-content: center;
-  gap: 10px;
-  width: 220px;
-  height: 60px;
+  gap: 15px;
+  width: 100%;
+  height: 80px;
 }
 
 button {
-  padding: 10px 0;
-  width: 100px; /* mismo tamaño */
+  width: 120px;
+  padding: 12px;
   border: none;
-  background: pink;
-  border-radius: 10px;
-  cursor: pointer;
+  background: #ff6b81;
+  color: white;
+  border-radius: 12px;
   font-size: 16px;
+  cursor: pointer;
 }
 
+/* BOTON NO */
 #no {
   position: absolute;
-  left: 120px;
 }
 
 /* ✨ BRILLOS */
 @keyframes brillo {
-  0% { opacity: 0; transform: scale(0.3) translateY(10px); }
-  50% { opacity: 1; transform: scale(1.5) translateY(-10px); }
-  100% { opacity: 0; transform: scale(0.3) translateY(10px); }
+  0% { opacity: 0; transform: scale(0.3); }
+  50% { opacity: 1; transform: scale(1.5); }
+  100% { opacity: 0; transform: scale(0.3); }
 }
 
 .brillo {
   position: absolute;
-  pointer-events: none;
-  animation: brillo 2s ease-in-out;
+  animation: brillo 2s infinite;
 }
 
 /* 💖 CORAZONES */
@@ -87,51 +92,45 @@ button {
 
 .corazon {
   position: absolute;
-  font-size: 22px;
+  font-size: 24px;
   animation: latir 1.5s infinite;
-  pointer-events: none;
 }
 
-/* ✉️ SOBRE */
+/* SOBRE */
 .sobre {
   position: relative;
-  width: 260px;
+  width: 80%;
+  max-width: 300px;
 }
 
 .sobre-img {
   width: 100%;
-  transition: opacity 0.5s;
 }
 
 .papel {
   position: absolute;
-  width: 75%;
-  left: 12.5%;
-  bottom: -160px;
-  background: transparent;
-  padding: 0;
-  transition: all 1s;
+  width: 80%;
+  left: 10%;
+  bottom: -150px;
   opacity: 0;
+  transition: all 1s;
 }
 
 .papel img {
   width: 100%;
   border-radius: 10px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  transform: rotate(-1deg);
 }
 
-/* abrir */
 .abrir .sobre-img {
   opacity: 0;
 }
 
 .abrir .papel {
-  bottom: 70px;
+  bottom: 50px;
   opacity: 1;
 }
 
-/* ✨ BRILLOS CARTA */
+/* BRILLOS CARTA */
 .brillo-carta {
   position: absolute;
   animation: brillo 1.5s infinite;
@@ -158,7 +157,7 @@ button {
 <div class="pantalla oculto" id="p2">
   <div class="contenido">
     <img src="https://i.imgur.com/k6pzLlN.jpeg">
-    <h2>de velda me amas?</h2>
+    <h2>¿de veldad?</h2>
 
     <div class="botones">
       <button onclick="p3()">Sí</button>
@@ -171,7 +170,7 @@ button {
 <div class="pantalla oculto" id="p3">
   <div class="contenido" id="corazones">
     <img src="https://i.imgur.com/MCLbeW7.jpeg">
-    <h2>yo también te amo, mi amor!</h2>
+    <h2>yo también te amo, mi amorr!</h2>
     <button onclick="p4()">Salir</button>
   </div>
 </div>
@@ -179,8 +178,8 @@ button {
 <!-- 4 -->
 <div class="pantalla oculto" id="p4">
   <div class="contenido">
-    <h2>⛔ Espera, no puedes irte ⛔</h2>
-    
+    <h2>⛔</h2>
+    <p>Espera todavía no te vayas...</p>
     <button onclick="p5()">ok</button>
   </div>
 </div>
@@ -189,7 +188,7 @@ button {
 <div class="pantalla oculto" id="p5">
   <div class="contenido">
     <img src="https://i.imgur.com/quWVyxf.jpeg">
-    <h2>tienes un correo</h2>
+    <h2>Tenes un correo</h2>
     <button onclick="p7()">A ver</button>
   </div>
 </div>
@@ -214,8 +213,8 @@ function mover(e){
   let btn = e.target;
   let cont = btn.parentElement;
 
-  let x = Math.random()*(cont.offsetWidth-80);
-  let y = Math.random()*(cont.offsetHeight-40);
+  let x = Math.random()*(cont.offsetWidth-120);
+  let y = Math.random()*(cont.offsetHeight-50);
 
   btn.style.left = x+"px";
   btn.style.top = y+"px";
@@ -233,9 +232,7 @@ function p5(){cambiar("p4","p5")}
 
 function p7(){
   cambiar("p5","p7");
-  setTimeout(()=>{
-    abrir();
-  }, 300);
+  setTimeout(()=>abrir(),300);
 }
 
 function abrir(){
@@ -243,7 +240,6 @@ function abrir(){
   brillosCarta();
 }
 
-/* 💖 corazones */
 function corazones(){
   let cont = document.getElementById("corazones");
 
@@ -252,8 +248,8 @@ function corazones(){
     c.className="corazon";
     c.innerHTML="❤️";
 
-    c.style.top=Math.random()*95+"%";
-    c.style.left=Math.random()*95+"%";
+    c.style.top=Math.random()*100+"%";
+    c.style.left=Math.random()*100+"%";
 
     cont.appendChild(c);
 
@@ -261,7 +257,6 @@ function corazones(){
   },400);
 }
 
-/* ✨ brillos carta */
 function brillosCarta(){
   let carta = document.getElementById("carta");
 
@@ -272,7 +267,6 @@ function brillosCarta(){
 
     b.style.top=Math.random()*100+"%";
     b.style.left=Math.random()*100+"%";
-    b.style.fontSize=(Math.random()*15+10)+"px";
 
     carta.appendChild(b);
 
@@ -280,7 +274,6 @@ function brillosCarta(){
   },300);
 }
 
-/* ✨ brillos inicio */
 function brillosInicio(){
   const cont = document.getElementById("brillos-container");
 
@@ -291,17 +284,14 @@ function brillosInicio(){
 
     b.style.top = Math.random()*100 + "%";
     b.style.left = Math.random()*100 + "%";
-    b.style.fontSize = (Math.random()*20 + 10) + "px";
 
     cont.appendChild(b);
 
     setTimeout(()=>b.remove(),2000);
-  },120);
+  },150);
 }
 
-window.onload = function(){
-  brillosInicio();
-}
+window.onload = brillosInicio;
 </script>
 
 </body>
