@@ -157,12 +157,12 @@ function burbujasIntro(){
  },400);
 },300);
 }
-window.onload=burbujasIntro;
+/* iniciar corazones inmediatamente */
+burbujasIntro();
 
 function p1(){
- document.getElementById("intro").classList.add("oculto");
- document.getElementById("p1").classList.remove("oculto");
- clearInterval(burbujasTimer);
+ cambiar("intro","p1");
+ if(burbujasTimer){ clearInterval(burbujasTimer); }
 }
 function p2(){cambiar("p1","p2");}
 function p3(){cambiar("p2","p3");corazones();}
