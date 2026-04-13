@@ -51,7 +51,8 @@ img {
 }
 
 button {
-  padding: 10px 20px;
+  padding: 10px 0;
+  width: 100px; /* mismo tamaño */
   border: none;
   background: pink;
   border-radius: 10px;
@@ -95,7 +96,6 @@ button {
 .sobre {
   position: relative;
   width: 260px;
-  cursor: pointer;
 }
 
 .sobre-img {
@@ -171,7 +171,7 @@ button {
 <div class="pantalla oculto" id="p3">
   <div class="contenido" id="corazones">
     <img src="https://i.imgur.com/MCLbeW7.jpeg">
-    <h2>yo también te amo</h2>
+    <h2>yo también te amo, mi amor!</h2>
     <button onclick="p4()">Salir</button>
   </div>
 </div>
@@ -179,8 +179,8 @@ button {
 <!-- 4 -->
 <div class="pantalla oculto" id="p4">
   <div class="contenido">
-    <h2>⛔ Espera, no puedes irte</h2>
-    <p>tienes un correo</p>
+    <h2>⛔ Espera, no puedes irte ⛔</h2>
+    
     <button onclick="p5()">ok</button>
   </div>
 </div>
@@ -190,15 +190,6 @@ button {
   <div class="contenido">
     <img src="https://i.imgur.com/quWVyxf.jpeg">
     <h2>tienes un correo</h2>
-    <button onclick="p6()">Recibir</button>
-  </div>
-</div>
-
-<!-- 6 -->
-<div class="pantalla oculto" id="p6">
-  <div class="contenido">
-    <img src="https://i.imgur.com/iLFFBoJ.jpeg">
-    <h2>toca para abrir</h2>
     <button onclick="p7()">A ver</button>
   </div>
 </div>
@@ -207,15 +198,13 @@ button {
 <div class="pantalla oculto" id="p7">
   <div class="contenido">
 
-    <div class="sobre" onclick="abrir()" id="sobre">
+    <div class="sobre" id="sobre">
       <img src="https://i.imgur.com/iLFFBoJ.jpeg" class="sobre-img">
 
       <div class="papel" id="carta">
         <img src="https://i.imgur.com/Y7tEZs5.jpeg">
       </div>
     </div>
-
-    <p>(tocá el sobre)</p>
 
   </div>
 </div>
@@ -241,8 +230,13 @@ function p2(){cambiar("p1","p2")}
 function p3(){cambiar("p2","p3"); corazones();}
 function p4(){cambiar("p3","p4")}
 function p5(){cambiar("p4","p5")}
-function p6(){cambiar("p5","p6")}
-function p7(){cambiar("p6","p7")}
+
+function p7(){
+  cambiar("p5","p7");
+  setTimeout(()=>{
+    abrir();
+  }, 300);
+}
 
 function abrir(){
   document.getElementById("sobre").classList.add("abrir");
