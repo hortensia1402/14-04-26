@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2 meses ❤️</title>
+<title>Felices 2 meses ❤️</title>
 
 <style>
 body {
@@ -58,13 +58,12 @@ button {
   color: white;
   border-radius: 12px;
   font-size: 16px;
-  cursor: pointer;
 }
 
 /* ✨ BRILLOS */
 @keyframes brillo {
   0% { opacity: 0; transform: scale(0.3); }
-  50% { opacity: 1; transform: scale(1.5); }
+  50% { opacity: 1; transform: scale(1.6); }
   100% { opacity: 0; transform: scale(0.3); }
 }
 
@@ -72,56 +71,33 @@ button {
   position: fixed;
   animation: brillo 2s infinite;
   color: gold;
-  font-size: 20px;
-  pointer-events: none;
+  font-size: 24px;
+  text-shadow: 0 0 10px gold, 0 0 20px yellow;
 }
 
-/* 💖 CORAZONES */
+/* 💖 CORAZONES ROSAS */
+.corazon {
+  position: fixed;
+  font-size: 26px;
+  animation: latir 1.5s infinite;
+  color: pink;
+}
+
 @keyframes latir {
   0% {transform:scale(1);}
   50% {transform:scale(1.4);}
   100% {transform:scale(1);}
 }
 
-.corazon {
-  position: fixed;
-  font-size: 24px;
-  animation: latir 1.5s infinite;
-  pointer-events: none;
-}
-
 /* SOBRE */
 .sobre {
-  position: relative;
   width: 90%;
   max-width: 320px;
-}
-
-.sobre-img {
-  width: 100%;
-}
-
-.papel {
-  position: absolute;
-  width: 85%;
-  left: 7.5%;
-  bottom: -160px;
-  opacity: 0;
-  transition: all 1s;
 }
 
 .papel img {
   width: 100%;
   border-radius: 10px;
-}
-
-.abrir .sobre-img {
-  opacity: 0;
-}
-
-.abrir .papel {
-  bottom: 60px;
-  opacity: 1;
 }
 </style>
 </head>
@@ -164,8 +140,7 @@ button {
 <!-- 4 -->
 <div class="pantalla oculto" id="p4">
   <div class="contenido">
-    <h2>⛔ Espera</h2>
-    <p>todavía no te vayas...</p>
+    <h2>⛔ Espera todavía no te vayas ⛔</h2>
     <button onclick="p5()">ok</button>
   </div>
 </div>
@@ -183,27 +158,21 @@ button {
 <div class="pantalla oculto" id="p6">
   <div class="contenido">
     <img src="https://i.imgur.com/iLFFBoJ.jpeg">
-    <h2>toca para abrir</h2>
     <button onclick="p7()">A ver</button>
   </div>
 </div>
 
-<!-- 7 -->
+<!-- 7 FINAL -->
 <div class="pantalla oculto" id="p7">
   <div class="contenido">
-    <div class="sobre" onclick="abrir()" id="sobre">
-      <img src="https://i.imgur.com/iLFFBoJ.jpeg" class="sobre-img">
-      <div class="papel">
-        <img src="https://i.imgur.com/Y7tEZs5.jpeg">
-      </div>
-    </div>
+    <img src="https://i.imgur.com/Y7tEZs5.jpeg">
   </div>
 </div>
 
 <script>
 let animacion;
 
-/* cambiar pantallas */
+/* cambiar */
 function cambiar(a,b){
   document.getElementById(a).classList.add("oculto");
   document.getElementById(b).classList.remove("oculto");
@@ -217,35 +186,38 @@ function p5(){cambiar("p4","p5")}
 function p6(){cambiar("p5","p6")}
 function p7(){cambiar("p6","p7")}
 
-/* abrir carta */
-function abrir(){
-  document.getElementById("sobre").classList.add("abrir");
-}
-
-/* ✨ brillos SOLO pantalla 1 */
+/* ✨ MUCHOS BRILLOS */
 function brillos(){
   animacion = setInterval(()=>{
-    let b = document.createElement("div");
-    b.className="brillo";
-    b.textContent="✦";
-    b.style.top=Math.random()*100+"vh";
-    b.style.left=Math.random()*100+"vw";
-    document.body.appendChild(b);
-    setTimeout(()=>b.remove(),2000);
-  },150);
+    for(let i=0;i<3;i++){  // MÁS cantidad
+      let b = document.createElement("div");
+      b.className="brillo";
+      b.textContent="✦";
+
+      b.style.top=Math.random()*100+"vh";
+      b.style.left=Math.random()*100+"vw";
+
+      document.body.appendChild(b);
+      setTimeout(()=>b.remove(),2000);
+    }
+  },120);
 }
 
-/* 💖 corazones SOLO pantalla 3 */
+/* 💖 CORAZONES ROSAS */
 function corazones(){
   animacion = setInterval(()=>{
-    let c = document.createElement("div");
-    c.className="corazon";
-    c.textContent="❤";
-    c.style.top=Math.random()*100+"vh";
-    c.style.left=Math.random()*100+"vw";
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),3000);
-  },400);
+    for(let i=0;i<2;i++){
+      let c = document.createElement("div");
+      c.className="corazon";
+      c.textContent="❤";
+
+      c.style.top=Math.random()*100+"vh";
+      c.style.left=Math.random()*100+"vw";
+
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(),3000);
+    }
+  },250);
 }
 
 /* iniciar */
