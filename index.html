@@ -89,7 +89,6 @@ button {
   100% {transform:scale(1);}
 }
 
-/* SOBRE */
 .sobre {
   width: 90%;
   max-width: 320px;
@@ -111,7 +110,7 @@ button {
     <h2>¿Me amas?</h2>
     <div class="botones">
       <button onclick="p2()">Sí</button>
-      <button onclick="no()">No</button>
+      <button onclick="no1()">No</button>
     </div>
   </div>
 </div>
@@ -123,7 +122,7 @@ button {
     <h2>¿de veldad?</h2>
     <div class="botones">
       <button onclick="p3()">Sí</button>
-      <button onclick="no()">No</button>
+      <button onclick="no2()">No</button>
     </div>
   </div>
 </div>
@@ -142,7 +141,6 @@ button {
   <div class="contenido">
     <h2>Espera✋</h2>
     <p>Todavía no te vayas...</p>
-    
     <button onclick="p5()">ok</button>
   </div>
 </div>
@@ -171,19 +169,28 @@ button {
   </div>
 </div>
 
-<!-- RESPUESTA NO -->
-<div class="pantalla oculto" id="no">
+<!-- NO DESDE P1 -->
+<div class="pantalla oculto" id="no1">
   <div class="contenido">
     <img src="https://media.tenor.com/PLX-tGVl7CQAAAAM/crying-cry.gif">
     <h2>No puede ser😭</h2>
-    <button onclick="p1()">Volver</button>
+    <p>Pq no me amas?😭</p>
+    <button onclick="volver1()">Mentira, io te amo<3</button>
+  </div>
+</div>
+
+<!-- NO DESDE P2 -->
+<div class="pantalla oculto" id="no2">
+  <div class="contenido">
+    <img src="https://64.media.tumblr.com/ec37de43675e162fe688925093d1b3d1/b63b1aba3169257f-28/s500x750/af87129713aef3eba9825487dcbc271e6aeaa9da.gif">
+    <h2>No me mientas Alex pq lloro😭</h2>
+    <button onclick="volver2()">😿</button>
   </div>
 </div>
 
 <script>
 let animacion;
 
-/* cambiar */
 function cambiar(a,b){
   document.getElementById(a).classList.add("oculto");
   document.getElementById(b).classList.remove("oculto");
@@ -197,49 +204,46 @@ function p5(){cambiar("p4","p5")}
 function p6(){cambiar("p5","p6")}
 function p7(){cambiar("p6","p7")}
 
-/* NUEVA FUNCIÓN NO */
-function no(){
-  let actual = document.querySelector(".pantalla:not(.oculto)").id;
-  cambiar(actual,"no");
-}
+/* NO personalizados */
+function no1(){cambiar("p1","no1")}
+function no2(){cambiar("p2","no2")}
 
-/* ✨ MUCHOS BRILLOS */
+/* VOLVER correctos */
+function volver1(){cambiar("no1","p1")}
+function volver2(){cambiar("no2","p2")}
+
+/* BRILLOS */
 function brillos(){
   animacion = setInterval(()=>{
     for(let i=0;i<3;i++){
       let b = document.createElement("div");
       b.className="brillo";
       b.textContent="✦";
-
       b.style.top=Math.random()*100+"vh";
       b.style.left=Math.random()*100+"vw";
-
       document.body.appendChild(b);
       setTimeout(()=>b.remove(),2000);
     }
   },120);
 }
 
-/* 💖 CORAZONES ROSAS */
+/* CORAZONES */
 function corazones(){
   animacion = setInterval(()=>{
     for(let i=0;i<2;i++){
       let c = document.createElement("div");
       c.className="corazon";
       c.textContent="❤";
-
       c.style.top=Math.random()*100+"vh";
       c.style.left=Math.random()*100+"vw";
-
       document.body.appendChild(c);
       setTimeout(()=>c.remove(),3000);
     }
   },250);
 }
 
-/* iniciar */
 window.onload = brillos;
 </script>
 
 </body>
-      </html>
+  </html>
