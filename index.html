@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>2 meses ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  overflow: hidden;
+  background: white;
+  text-align: center;
+}
+
+/* CENTRADO */
+.pantalla {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.oculto {
+  opacity: 0;
+  pointer-events: none;
+}
+
+img {
+  width: 230px;
+  margin-bottom: 10px;
+}
+
+/* BOTONES */
+.botones {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 220px;
+  height: 60px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  background: pink;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#no {
+  position: absolute;
+  left: 120px;
+}
+
+/* ✨ BRILLOS */
+@keyframes brillo {
+  0% { opacity: 0; transform: scale(0.3) translateY(10px); }
+  50% { opacity: 1; transform: scale(1.5) translateY(-10px); }
+  100% { opacity: 0; transform: scale(0.3) translateY(10px); }
+}
+
+.brillo {
+  position: absolute;
+  pointer-events: none;
+  animation: brillo 2s ease-in-out;
+}
+
+/* 💖 CORAZONES */
+@keyframes latir {
+  0% {transform:scale(1);}
+  50% {transform:scale(1.4);}
+  100% {transform:scale(1);}
+}
+
+.corazon {
+  position: absolute;
+  font-size: 22px;
+  animation: latir 1.5s infinite;
+  pointer-events: none;
+}
+
+/* ✉️ SOBRE */
+.sobre {
+  position: relative;
+  width: 260px;
+  cursor: pointer;
+}
+
+.sobre-img {
+  width: 100%;
+  transition: opacity 0.5s;
+}
+
+.papel {
+  position: absolute;
+  width: 75%;
+  left: 12.5%;
+  bottom: -160px;
+  background: transparent;
+  padding: 0;
+  transition: all 1s;
+  opacity: 0;
+}
+
+.papel img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  transform: rotate(-1deg);
+}
+
+/* abrir */
+.abrir .sobre-img {
+  opacity: 0;
+}
+
+.abrir .papel {
+  bottom: 70px;
+  opacity: 1;
+}
+
+/* ✨ BRILLOS CARTA */
+.brillo-carta {
+  position: absolute;
+  animation: brillo 1.5s infinite;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 1 -->
+<div class="pantalla" id="p1">
+  <div class="contenido" id="brillos-container">
+    <img src="https://i.imgur.com/2AQnTbl.jpeg">
+    <h2>¿Me amas?</h2>
+
+    <div class="botones">
+      <button onclick="p2()">Sí</button>
+      <button id="no" onmouseover="mover(event)">No</button>
+    </div>
+  </div>
+</div>
+
+<!-- 2 -->
+<div class="pantalla oculto" id="p2">
+  <div class="contenido">
+    <img src="https://i.imgur.com/k6pzLlN.jpeg">
+    <h2>de velda me amas?</h2>
+
+    <div class="botones">
+      <button onclick="p3()">Sí</button>
+      <button id="no" onmouseover="mover(event)">No</button>
+    </div>
+  </div>
+</div>
+
+<!-- 3 -->
+<div class="pantalla oculto" id="p3">
+  <div class="contenido" id="corazones">
+    <img src="https://i.imgur.com/MCLbeW7.jpeg">
+    <h2>yo también te amo</h2>
+    <button onclick="p4()">Salir</button>
+  </div>
+</div>
+
+<!-- 4 -->
+<div class="pantalla oculto" id="p4">
+  <div class="contenido">
+    <h2>⛔ Espera, no puedes irte</h2>
+    <p>tienes un correo</p>
+    <button onclick="p5()">ok</button>
+  </div>
+</div>
+
+<!-- 5 -->
+<div class="pantalla oculto" id="p5">
+  <div class="contenido">
+    <img src="https://i.imgur.com/quWVyxf.jpeg">
+    <h2>tienes un correo</h2>
+    <button onclick="p6()">Recibir</button>
+  </div>
+</div>
+
+<!-- 6 -->
+<div class="pantalla oculto" id="p6">
+  <div class="contenido">
+    <img src="https://i.imgur.com/iLFFBoJ.jpeg">
+    <h2>toca para abrir</h2>
+    <button onclick="p7()">A ver</button>
+  </div>
+</div>
+
+<!-- FINAL -->
+<div class="pantalla oculto" id="p7">
+  <div class="contenido">
+
+    <div class="sobre" onclick="abrir()" id="sobre">
+      <img src="https://i.imgur.com/iLFFBoJ.jpeg" class="sobre-img">
+
+      <div class="papel" id="carta">
+        <img src="https://i.imgur.com/Y7tEZs5.jpeg">
+      </div>
+    </div>
+
+    <p>(tocá el sobre)</p>
+
+  </div>
+</div>
+
+<script>
+function mover(e){
+  let btn = e.target;
+  let cont = btn.parentElement;
+
+  let x = Math.random()*(cont.offsetWidth-80);
+  let y = Math.random()*(cont.offsetHeight-40);
+
+  btn.style.left = x+"px";
+  btn.style.top = y+"px";
+}
+
+function cambiar(a,b){
+  document.getElementById(a).classList.add("oculto");
+  document.getElementById(b).classList.remove("oculto");
+}
+
+function p2(){cambiar("p1","p2")}
+function p3(){cambiar("p2","p3"); corazones();}
+function p4(){cambiar("p3","p4")}
+function p5(){cambiar("p4","p5")}
+function p6(){cambiar("p5","p6")}
+function p7(){cambiar("p6","p7")}
+
+function abrir(){
+  document.getElementById("sobre").classList.add("abrir");
+  brillosCarta();
+}
+
+/* 💖 corazones */
+function corazones(){
+  let cont = document.getElementById("corazones");
+
+  setInterval(()=>{
+    let c = document.createElement("div");
+    c.className="corazon";
+    c.innerHTML="❤️";
+
+    c.style.top=Math.random()*95+"%";
+    c.style.left=Math.random()*95+"%";
+
+    cont.appendChild(c);
+
+    setTimeout(()=>c.remove(),3000);
+  },400);
+}
+
+/* ✨ brillos carta */
+function brillosCarta(){
+  let carta = document.getElementById("carta");
+
+  setInterval(()=>{
+    let b = document.createElement("div");
+    b.className="brillo-carta";
+    b.innerHTML="✦";
+
+    b.style.top=Math.random()*100+"%";
+    b.style.left=Math.random()*100+"%";
+    b.style.fontSize=(Math.random()*15+10)+"px";
+
+    carta.appendChild(b);
+
+    setTimeout(()=>b.remove(),2000);
+  },300);
+}
+
+/* ✨ brillos inicio */
+function brillosInicio(){
+  const cont = document.getElementById("brillos-container");
+
+  setInterval(()=>{
+    let b = document.createElement("div");
+    b.className = "brillo";
+    b.innerHTML = "✦";
+
+    b.style.top = Math.random()*100 + "%";
+    b.style.left = Math.random()*100 + "%";
+    b.style.fontSize = (Math.random()*20 + 10) + "px";
+
+    cont.appendChild(b);
+
+    setTimeout(()=>b.remove(),2000);
+  },120);
+}
+
+window.onload = function(){
+  brillosInicio();
+}
+</script>
+
+</body>
+</html>
