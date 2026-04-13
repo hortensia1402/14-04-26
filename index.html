@@ -42,7 +42,6 @@ img {
   margin-bottom: 15px;
 }
 
-/* BOTONES */
 .botones {
   display: flex;
   justify-content: center;
@@ -75,7 +74,7 @@ button {
   text-shadow: 0 0 10px gold, 0 0 20px yellow;
 }
 
-/* 💖 CORAZONES ROSAS */
+/* 💖 CORAZONES */
 .corazon {
   position: fixed;
   font-size: 26px;
@@ -87,16 +86,6 @@ button {
   0% {transform:scale(1);}
   50% {transform:scale(1.4);}
   100% {transform:scale(1);}
-}
-
-.sobre {
-  width: 90%;
-  max-width: 320px;
-}
-
-.papel img {
-  width: 100%;
-  border-radius: 10px;
 }
 </style>
 </head>
@@ -110,7 +99,7 @@ button {
     <h2>¿Me amas?</h2>
     <div class="botones">
       <button onclick="p2()">Sí</button>
-      <button onclick="no1()">No</button>
+      <button onclick="noDesde1()">No</button>
     </div>
   </div>
 </div>
@@ -122,7 +111,7 @@ button {
     <h2>¿de veldad?</h2>
     <div class="botones">
       <button onclick="p3()">Sí</button>
-      <button onclick="no2()">No</button>
+      <button onclick="noDesde2()">No</button>
     </div>
   </div>
 </div>
@@ -162,28 +151,28 @@ button {
   </div>
 </div>
 
-<!-- 7 FINAL -->
+<!-- 7 -->
 <div class="pantalla oculto" id="p7">
   <div class="contenido">
     <img src="https://i.imgur.com/Y7tEZs5.jpeg">
   </div>
 </div>
 
-<!-- NO DESDE P1 -->
+<!-- NO P1 -->
 <div class="pantalla oculto" id="no1">
   <div class="contenido">
     <img src="https://media.tenor.com/PLX-tGVl7CQAAAAM/crying-cry.gif">
     <h2>No puede ser😭</h2>
-    <button onclick="irP2()">Seguir</button>
+    <button onclick="irAP2()">Seguir</button>
   </div>
 </div>
 
-<!-- NO DESDE P2 -->
+<!-- NO P2 -->
 <div class="pantalla oculto" id="no2">
   <div class="contenido">
     <img src="https://64.media.tumblr.com/ec37de43675e162fe688925093d1b3d1/b63b1aba3169257f-28/s500x750/af87129713aef3eba9825487dcbc271e6aeaa9da.gif">
     <h2>No me mientas pq lloro😭</h2>
-    <button onclick="irP3()">Seguir</button>
+    <button onclick="irAP3()">Seguir</button>
   </div>
 </div>
 
@@ -203,13 +192,13 @@ function p5(){cambiar("p4","p5")}
 function p6(){cambiar("p5","p6")}
 function p7(){cambiar("p6","p7")}
 
-/* NO */
-function no1(){cambiar("p1","no1")}
-function no2(){cambiar("p2","no2")}
+/* NO (corregido) */
+function noDesde1(){cambiar("p1","no1")}
+function noDesde2(){cambiar("p2","no2")}
 
 /* IR SIGUIENTE */
-function irP2(){cambiar("no1","p2")}
-function irP3(){cambiar("no2","p3")}
+function irAP2(){cambiar("no1","p2")}
+function irAP3(){cambiar("no2","p3")}
 
 /* BRILLOS */
 function brillos(){
@@ -245,4 +234,4 @@ window.onload = brillos;
 </script>
 
 </body>
-    </html>
+  </html>
