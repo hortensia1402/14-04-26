@@ -41,16 +41,19 @@ button{width:130px;padding:12px;border:none;background:#ff6b81;color:white;borde
   box-shadow:0 0 20px rgba(0,0,0,.2);
 }
 
-/* 💕 corazones burbuja intro */
+/* 💕 corazones flotando (suspendidos) */
 .burbuja{
   position:fixed;
   font-size:22px;
   color:#ff7eb9;
-  animation:flotar 4s linear forwards;
+  animation:flotar 5s ease-in-out infinite;
   pointer-events:none;
 }
 @keyframes flotar{
-  0%{transform:translateY(0) scale(.8);opacity:0}
+  0%{transform:translateY(0) scale(1);opacity:.8}
+  50%{transform:translateY(-12px) scale(1.2);opacity:1}
+  100%{transform:translateY(0) scale(1);opacity:.8}
+}
   20%{opacity:1}
   100%{transform:translateY(-120vh) scale(1.5);opacity:0}
 }
@@ -148,10 +151,11 @@ function burbujasIntro(){
   b.className="burbuja";
   b.textContent="❤";
   b.style.left=Math.random()*100+"vw";
-  b.style.bottom="-20px";
+  b.style.top=Math.random()*100+"vh";
   document.body.appendChild(b);
-  setTimeout(()=>b.remove(),4000);
- },300);
+  setTimeout(()=>b.remove(),5000);
+ },400);
+},300);
 }
 window.onload=burbujasIntro;
 
