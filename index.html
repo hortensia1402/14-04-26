@@ -14,7 +14,6 @@ body {
   color: white;
 }
 
-/* CENTRADO FULL SCREEN */
 .pantalla {
   position: fixed;
   width: 100vw;
@@ -38,23 +37,21 @@ body {
   pointer-events: none;
 }
 
-/* IMAGEN MÁS GRANDE */
 img {
   width: 95%;
   max-width: 350px;
-  height: auto;
   margin-bottom: 15px;
 }
 
-/* BOTONES */
+/* BOTONES MÁS A LA IZQUIERDA */
 .botones {
   position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
+  justify-content: flex-start;
+  gap: 15px;
   width: 100%;
   height: 100px;
+  padding-left: 30px;
 }
 
 button {
@@ -68,10 +65,8 @@ button {
   cursor: pointer;
 }
 
-/* BOTÓN NO */
 #no {
   position: absolute;
-  right: 0;
 }
 
 /* ✨ BRILLOS */
@@ -81,10 +76,11 @@ button {
   100% { opacity: 0; transform: scale(0.3); }
 }
 
-.brillo, .brillo-carta {
+.brillo {
   position: fixed;
   animation: brillo 2s infinite;
   pointer-events: none;
+  color: gold;
 }
 
 /* 💖 CORAZONES */
@@ -141,7 +137,7 @@ button {
 
 <!-- 1 -->
 <div class="pantalla" id="p1">
-  <div class="contenido" id="brillos-container">
+  <div class="contenido">
     <img src="https://i.imgur.com/2AQnTbl.jpeg">
     <h2>¿Me amas?</h2>
 
@@ -195,19 +191,19 @@ button {
 <!-- FINAL -->
 <div class="pantalla oculto" id="p7">
   <div class="contenido">
-
     <div class="sobre" id="sobre">
       <img src="https://i.imgur.com/iLFFBoJ.jpeg" class="sobre-img">
-
       <div class="papel" id="carta">
         <img src="https://i.imgur.com/Y7tEZs5.jpeg">
       </div>
     </div>
-
   </div>
 </div>
 
 <script>
+let animacionActual;
+
+/* mover botón */
 function mover(e){
   let btn = e.target;
   let cont = btn.parentElement;
@@ -222,16 +218,19 @@ function mover(e){
   btn.style.top = y + "px";
 }
 
+/* cambiar pantalla */
 function cambiar(a,b){
   document.getElementById(a).classList.add("oculto");
   document.getElementById(b).classList.remove("oculto");
+
+  detenerAnimaciones();
 }
 
+/* pantallas */
 function p2(){cambiar("p1","p2")}
 function p3(){cambiar("p2","p3"); corazones();}
 function p4(){cambiar("p3","p4")}
 function p5(){cambiar("p4","p5")}
-
 function p7(){
   cambiar("p5","p7");
   setTimeout(()=>abrir(),300);
@@ -239,12 +238,32 @@ function p7(){
 
 function abrir(){
   document.getElementById("sobre").classList.add("abrir");
-  brillosCarta();
 }
 
-/* 💖 CORAZONES FULL SCREEN */
+/* detener animaciones */
+function detenerAnimaciones(){
+  clearInterval(animacionActual);
+}
+
+/* ✨ BRILLOS SOLO P1 */
+function brillos(){
+  animacionActual = setInterval(()=>{
+    let b = document.createElement("div");
+    b.className="brillo";
+    b.innerHTML="✨";
+
+    b.style.top=Math.random()*100+"vh";
+    b.style.left=Math.random()*100+"vw";
+
+    document.body.appendChild(b);
+
+    setTimeout(()=>b.remove(),2000);
+  },150);
+}
+
+/* 💖 CORAZONES SOLO P3 */
 function corazones(){
-  setInterval(()=>{
+  animacionActual = setInterval(()=>{
     let c = document.createElement("div");
     c.className="corazon";
     c.innerHTML="❤️";
@@ -258,40 +277,9 @@ function corazones(){
   },400);
 }
 
-/* ✨ BRILLOS CARTA FULL SCREEN */
-function brillosCarta(){
-  setInterval(()=>{
-    let b = document.createElement("div");
-    b.className="brillo-carta";
-    b.innerHTML="✦";
-
-    b.style.top=Math.random()*100+"vh";
-    b.style.left=Math.random()*100+"vw";
-
-    document.body.appendChild(b);
-
-    setTimeout(()=>b.remove(),2000);
-  },300);
-}
-
-/* ✨ BRILLOS INICIO */
-function brillosInicio(){
-  setInterval(()=>{
-    let b = document.createElement("div");
-    b.className = "brillo";
-    b.innerHTML = "✦";
-
-    b.style.top = Math.random()*100 + "vh";
-    b.style.left = Math.random()*100 + "vw";
-
-    document.body.appendChild(b);
-
-    setTimeout(()=>b.remove(),2000);
-  },150);
-}
-
-window.onload = brillosInicio;
+/* iniciar solo en p1 */
+window.onload = brillos;
 </script>
 
 </body>
-</html>
+      </html>
