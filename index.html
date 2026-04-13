@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Felices 2 meses ❤️</title>
+<title>2 meses ❤️</title>
 
 <style>
 body {
@@ -44,12 +44,10 @@ img {
 
 /* BOTONES */
 .botones {
-  position: relative;
   display: flex;
   justify-content: center;
   gap: 20px;
-  width: 100%;
-  height: 140px;
+  margin-top: 10px;
 }
 
 button {
@@ -61,22 +59,6 @@ button {
   border-radius: 12px;
   font-size: 16px;
   cursor: pointer;
-}
-
-/* BOTON NO */
-.no {
-  position: fixed;
-}
-
-/* ✨ EFECTO SI */
-@keyframes brilloClick {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); box-shadow: 0 0 20px gold; }
-  100% { transform: scale(1); }
-}
-
-.brillar {
-  animation: brilloClick 0.4s ease;
 }
 
 /* ✨ BRILLOS */
@@ -95,16 +77,17 @@ button {
 }
 
 /* 💖 CORAZONES */
-.corazon {
-  position: fixed;
-  font-size: 24px;
-  animation: latir 1.5s infinite;
-}
-
 @keyframes latir {
   0% {transform:scale(1);}
   50% {transform:scale(1.4);}
   100% {transform:scale(1);}
+}
+
+.corazon {
+  position: fixed;
+  font-size: 24px;
+  animation: latir 1.5s infinite;
+  pointer-events: none;
 }
 
 /* SOBRE */
@@ -114,13 +97,26 @@ button {
   max-width: 320px;
 }
 
+.sobre-img {
+  width: 100%;
+}
+
 .papel {
   position: absolute;
   width: 85%;
   left: 7.5%;
   bottom: -160px;
   opacity: 0;
-  transition: 1s;
+  transition: all 1s;
+}
+
+.papel img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.abrir .sobre-img {
+  opacity: 0;
 }
 
 .abrir .papel {
@@ -138,8 +134,8 @@ button {
     <img src="https://i.imgur.com/2AQnTbl.jpeg">
     <h2>¿Me amas?</h2>
     <div class="botones">
-      <button onclick="efectoSi(this); p2()">Sí</button>
-      <button class="no">No</button>
+      <button onclick="p2()">Sí</button>
+      <button>No</button>
     </div>
   </div>
 </div>
@@ -150,8 +146,8 @@ button {
     <img src="https://i.imgur.com/k6pzLlN.jpeg">
     <h2>¿de veldad?</h2>
     <div class="botones">
-      <button onclick="efectoSi(this); p3()">Sí</button>
-      <button class="no">No</button>
+      <button onclick="p3()">Sí</button>
+      <button>No</button>
     </div>
   </div>
 </div>
@@ -165,16 +161,49 @@ button {
   </div>
 </div>
 
+<!-- 4 -->
+<div class="pantalla oculto" id="p4">
+  <div class="contenido">
+    <h2>⛔ Espera</h2>
+    <p>todavía no te vayas...</p>
+    <button onclick="p5()">ok</button>
+  </div>
+</div>
+
+<!-- 5 -->
+<div class="pantalla oculto" id="p5">
+  <div class="contenido">
+    <img src="https://i.imgur.com/quWVyxf.jpeg">
+    <h2>Tenes un correo</h2>
+    <button onclick="p6()">Recibir</button>
+  </div>
+</div>
+
+<!-- 6 -->
+<div class="pantalla oculto" id="p6">
+  <div class="contenido">
+    <img src="https://i.imgur.com/iLFFBoJ.jpeg">
+    <h2>toca para abrir</h2>
+    <button onclick="p7()">A ver</button>
+  </div>
+</div>
+
+<!-- 7 -->
+<div class="pantalla oculto" id="p7">
+  <div class="contenido">
+    <div class="sobre" onclick="abrir()" id="sobre">
+      <img src="https://i.imgur.com/iLFFBoJ.jpeg" class="sobre-img">
+      <div class="papel">
+        <img src="https://i.imgur.com/Y7tEZs5.jpeg">
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 let animacion;
 
-/* efecto si */
-function efectoSi(btn){
-  btn.classList.add("brillar");
-  setTimeout(()=>btn.classList.remove("brillar"),400);
-}
-
-/* cambiar */
+/* cambiar pantallas */
 function cambiar(a,b){
   document.getElementById(a).classList.add("oculto");
   document.getElementById(b).classList.remove("oculto");
@@ -183,9 +212,17 @@ function cambiar(a,b){
 
 function p2(){cambiar("p1","p2")}
 function p3(){cambiar("p2","p3"); corazones();}
-function p4(){cambiar("p3","p1")}
+function p4(){cambiar("p3","p4")}
+function p5(){cambiar("p4","p5")}
+function p6(){cambiar("p5","p6")}
+function p7(){cambiar("p6","p7")}
 
-/* ✨ brillos */
+/* abrir carta */
+function abrir(){
+  document.getElementById("sobre").classList.add("abrir");
+}
+
+/* ✨ brillos SOLO pantalla 1 */
 function brillos(){
   animacion = setInterval(()=>{
     let b = document.createElement("div");
@@ -198,7 +235,7 @@ function brillos(){
   },150);
 }
 
-/* 💖 corazones */
+/* 💖 corazones SOLO pantalla 3 */
 function corazones(){
   animacion = setInterval(()=>{
     let c = document.createElement("div");
@@ -210,21 +247,6 @@ function corazones(){
     setTimeout(()=>c.remove(),3000);
   },400);
 }
-
-/* 😈 ESCAPE SOLO DEL BOTON QUE TOCAS */
-document.addEventListener("mousemove", (e)=>{
-  document.querySelectorAll(".no").forEach(btn=>{
-    let rect = btn.getBoundingClientRect();
-    let dist = Math.hypot(
-      e.clientX - (rect.left + rect.width/2),
-      e.clientY - (rect.top + rect.height/2)
-    );
-    if(dist < 100){
-      btn.style.left = Math.random()*90 + "vw";
-      btn.style.top = Math.random()*90 + "vh";
-    }
-  });
-});
 
 /* iniciar */
 window.onload = brillos;
