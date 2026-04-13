@@ -111,7 +111,7 @@ button {
     <h2>¿Me amas?</h2>
     <div class="botones">
       <button onclick="p2()">Sí</button>
-      <button>No</button>
+      <button onclick="no()">No</button>
     </div>
   </div>
 </div>
@@ -123,7 +123,7 @@ button {
     <h2>¿de veldad?</h2>
     <div class="botones">
       <button onclick="p3()">Sí</button>
-      <button>No</button>
+      <button onclick="no()">No</button>
     </div>
   </div>
 </div>
@@ -171,6 +171,15 @@ button {
   </div>
 </div>
 
+<!-- RESPUESTA NO -->
+<div class="pantalla oculto" id="no">
+  <div class="contenido">
+    <img src="https://media.tenor.com/PLX-tGVl7CQAAAAM/crying-cry.gif">
+    <h2>No puede ser😭</h2>
+    <button onclick="p1()">Volver</button>
+  </div>
+</div>
+
 <script>
 let animacion;
 
@@ -188,10 +197,16 @@ function p5(){cambiar("p4","p5")}
 function p6(){cambiar("p5","p6")}
 function p7(){cambiar("p6","p7")}
 
+/* NUEVA FUNCIÓN NO */
+function no(){
+  let actual = document.querySelector(".pantalla:not(.oculto)").id;
+  cambiar(actual,"no");
+}
+
 /* ✨ MUCHOS BRILLOS */
 function brillos(){
   animacion = setInterval(()=>{
-    for(let i=0;i<3;i++){  // MÁS cantidad
+    for(let i=0;i<3;i++){
       let b = document.createElement("div");
       b.className="brillo";
       b.textContent="✦";
@@ -227,4 +242,4 @@ window.onload = brillos;
 </script>
 
 </body>
-</html>
+      </html>
