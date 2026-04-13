@@ -162,9 +162,9 @@ function noDesde1(){cambiar("p1","no1");} function noDesde2(){cambiar("p2","no2"
 
 // botones "Sí" que se escapan function escapar(btn){ btn.style.transform=translate(${Math.random()*160-80}px,${Math.random()*120-60}px); }
 
-document.getElementById("si1").addEventListener("mouseover",()=>escapar(document.getElementById("si1"))); document.getElementById("si1").addEventListener("click",e=>{e.preventDefault();escapar(e.target);});
+function bloquearYEscapar(btn){ btn.addEventListener("touchstart",e=>{e.preventDefault();escapar(btn);}); btn.addEventListener("mousedown",e=>{e.preventDefault();escapar(btn);}); }
 
-document.getElementById("si2").addEventListener("mouseover",()=>escapar(document.getElementById("si2"))); document.getElementById("si2").addEventListener("click",e=>{e.preventDefault();escapar(e.target);}); </script>
+bloquearYEscapar(document.getElementById("si1")); bloquearYEscapar(document.getElementById("si2")); </script>
 
 </body>
 </html>
