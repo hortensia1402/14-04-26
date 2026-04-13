@@ -7,7 +7,7 @@ body {
   margin: 0;
   font-family: Arial;
   overflow: hidden;
-  background: #cfefff; /* fondo celestito */
+  background: #cfefff; /* Fondo celeste solicitado */
   color: white;
 }
 
@@ -65,13 +65,13 @@ button {
 }
 
 @keyframes latir {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.4); }
-  100% { transform: scale(1); }
+  0% {transform:scale(1);} 
+  50% {transform:scale(1.4);} 
+  100% {transform:scale(1);} 
 }
 </style></head><body><!-- 1 --><div class="pantalla" id="p1">
   <div class="contenido">
-    <img src="https://media.tenor.com/BBS_EGuWfVsAAAAj/peach-shy.gif">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg5XiY3u3i9iElKLN8-ptpZMPsZ_lbqNknVYm8k7-NBA&s=10">
     <h2>¿Me amas?</h2>
     <div class="botones">
       <button onclick="p2()">Sí</button>
@@ -136,18 +136,20 @@ function cambiar(a,b){
   clearInterval(animacion);
 }
 
-function p2(){cambiar("p1","p2");}
+function p2(){cambiar("p1","p2")}
 function p3(){cambiar("p2","p3"); corazones();}
-function p4(){cambiar("p3","p4");}
-function p5(){cambiar("p4","p5");}
-function p6(){cambiar("p5","p6");}
-function p7(){cambiar("p6","p7");}
+function p4(){cambiar("p3","p4")}
+function p5(){cambiar("p4","p5")}
+function p6(){cambiar("p5","p6")}
+function p7(){cambiar("p6","p7")}
 
-function noDesde1(){cambiar("p1","no1");}
-function noDesde2(){cambiar("p2","no2");}
+/* NO */
+function noDesde1(){cambiar("p1","no1")}
+function noDesde2(){cambiar("p2","no2")}
 
-function irAP2(){cambiar("no1","p2");}
-function irAP3(){cambiar("no2","p3");}
+/* IR SIGUIENTE */
+function irAP2(){cambiar("no1","p2")}
+function irAP3(){cambiar("no2","p3")}
 
 /* CORAZONES (brillos eliminado) */
 function corazones(){
