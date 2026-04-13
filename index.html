@@ -3,167 +3,143 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Felices 2 meses ❤️</title><style>
-body {
-  margin: 0;
-  font-family: Arial;
-  overflow: hidden;
-  background: #cfefff; /* Fondo celeste solicitado */
-  color: white;
+body{
+  margin:0;
+  font-family:Arial;
+  overflow:hidden;
+  background:#d6f1ff; /* celeste pastel */
+  color:white;
 }
-
-.pantalla {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.pantalla{
+  position:fixed;
+  width:100vw;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transition:opacity .7s ease;
 }
-
-.contenido {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 95%;
-  max-width: 500px;
+.contenido{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:95%;
+  max-width:500px;
 }
-
-.oculto {
-  opacity: 0;
-  pointer-events: none;
-}
-
-img {
-  width: 95%;
-  max-width: 350px;
-  margin-bottom: 15px;
-}
-
-.botones {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 10px;
-}
-
-button {
-  width: 120px;
-  padding: 12px;
-  border: none;
-  background: #ff6b81;
-  color: white;
-  border-radius: 12px;
-  font-size: 16px;
-}
-
-/* 💖 CORAZONES */
-.corazon {
-  position: fixed;
-  font-size: 26px;
-  animation: latir 1.5s infinite;
-  color: pink;
-}
-
-@keyframes latir {
-  0% {transform:scale(1);} 
-  50% {transform:scale(1.4);} 
-  100% {transform:scale(1);} 
-}
-</style></head><body><!-- 1 --><div class="pantalla" id="p1">
-  <div class="contenido">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg5XiY3u3i9iElKLN8-ptpZMPsZ_lbqNknVYm8k7-NBA&s=10">
-    <h2>¿Me amas?</h2>
-    <div class="botones">
-      <button onclick="p2()">Sí</button>
-      <button onclick="noDesde1()">No</button>
-    </div>
+.oculto{opacity:0;pointer-events:none}
+img{width:95%;max-width:350px;margin-bottom:15px}
+.botones{display:flex;gap:20px;margin-top:10px}
+button{width:130px;padding:12px;border:none;background:#ff6b81;color:white;border-radius:12px;font-size:16px}
+.corazon{position:fixed;font-size:26px;animation:latir 1.5s infinite;color:pink}
+@keyframes latir{0%{transform:scale(1)}50%{transform:scale(1.4)}100%{transform:scale(1)}}
+</style></head>
+<body><!-- INTRO NUEVA --><div class="pantalla" id="intro">
+ <div class="contenido">
+  <img src="https://media.tenor.com/ftqs42Yna-oAAAAj/mochi-mochi-hello-white-mochi-mochi.gif">
+ </div>
+</div><!-- 1 --><div class="pantalla oculto" id="p1">
+ <div class="contenido">
+  <img src="https://media.tenor.com/BBS_EGuWfVsAAAAj/peach-shy.gif">
+  <h2>¿Me amas?</h2>
+  <div class="botones">
+    <button onclick="p2()">Sí</button>
+    <button onclick="noDesde1()">No</button>
   </div>
+ </div>
 </div><!-- 2 --><div class="pantalla oculto" id="p2">
-  <div class="contenido">
-    <img src="https://media.tenor.com/yr7z512oIf4AAAAj/peach-goma-shy-blush-heart.gif">
-    <h2>¿de veldad?</h2>
-    <div class="botones">
-      <button onclick="p3()">Sí</button>
-      <button onclick="noDesde2()">No</button>
-    </div>
+ <div class="contenido">
+  <img src="https://media.tenor.com/yr7z512oIf4AAAAj/peach-goma-shy-blush-heart.gif">
+  <h2>¿de veldad?</h2>
+  <div class="botones">
+    <button onclick="p3()">Sí</button>
+    <button onclick="noDesde2()">No</button>
   </div>
+ </div>
 </div><!-- 3 --><div class="pantalla oculto" id="p3">
-  <div class="contenido">
-    <img src="https://media.tenor.com/lnI645QIjMAAAAAj/gatitos-enamorados-besos-de-amor.gif">
-    <h2>yo también te amo, mi amorr!</h2>
-    <button onclick="p4()">Salir</button>
-  </div>
+ <div class="contenido">
+  <img src="https://media.tenor.com/lnI645QIjMAAAAAj/gatitos-enamorados-besos-de-amor.gif">
+  <h2>yo también te amo, mi amorr!</h2>
+  <button onclick="p4()">Salir</button>
+ </div>
 </div><!-- 4 --><div class="pantalla oculto" id="p4">
-  <div class="contenido">
-    <h2>Espera✋</h2>
-    <p>Todavía no te vayas...</p>
-    <button onclick="p5()">ok</button>
-  </div>
+ <div class="contenido">
+  <img src="https://i.pinimg.com/originals/d5/18/8b/d5188b026fc9a41f80472d499ccc38fb.gif">
+  <h2>Espera ✋</h2>
+  <button onclick="p5()">ok</button>
+ </div>
 </div><!-- 5 --><div class="pantalla oculto" id="p5">
-  <div class="contenido">
-    <img src="https://i.imgur.com/quWVyxf.jpeg">
-    <h2>Tenes un correo</h2>
-    <button onclick="p6()">Recibir</button>
-  </div>
+ <div class="contenido">
+  <img src="https://i.imgur.com/quWVyxf.jpeg">
+  <h2>Tenes un correo</h2>
+  <button onclick="p6()">Recibir</button>
+ </div>
 </div><!-- 6 --><div class="pantalla oculto" id="p6">
-  <div class="contenido">
-    <img src="https://i.imgur.com/iLFFBoJ.jpeg">
-    <button onclick="p7()">A ver</button>
-  </div>
-</div><!-- 7 --><div class="pantalla oculto" id="p7">
-  <div class="contenido">
-    <img src="https://i.imgur.com/Y7tEZs5.jpeg">
-  </div>
-</div><!-- NO P1 --><div class="pantalla oculto" id="no1">
-  <div class="contenido">
-    <img src="https://media.tenor.com/PLX-tGVl7CQAAAAM/crying-cry.gif">
-    <h2>No puede ser😭</h2>
-    <p>Pq no me amas?😭</p>
-    <button onclick="irAP2()">Mentira, io te amo<3</button>
-  </div>
-</div><!-- NO P2 --><div class="pantalla oculto" id="no2">
-  <div class="contenido">
-    <img src="https://64.media.tumblr.com/ec37de43675e162fe688925093d1b3d1/b63b1aba3169257f-28/s500x750/af87129713aef3eba9825487dcbc271e6aeaa9da.gif">
-    <h2>No me mientas Alex pq lloro😭</h2>
-    <button onclick="irAP3()">io te amo de veldad<3</button>
-  </div>
+ <div class="contenido">
+  <img src="https://i.imgur.com/iLFFBoJ.jpeg">
+  <button onclick="p7()">A ver</button>
+ </div>
+</div><!-- 7 CARTA --><div class="pantalla oculto" id="p7">
+ <div class="contenido">
+  <img src="https://i.imgur.com/Y7tEZs5.jpeg">
+  <button id="btnFinal" class="oculto" onclick="p8()">Continuar</button>
+ </div>
+</div><!-- 8 FELICES 2 MESES --><div class="pantalla oculto" id="p8">
+ <div class="contenido">
+  <img src="https://media.tenor.com/_4kl3WUiiQUAAAAj/peach-cat.gif">
+  <h2>Felices 2 meses 💕</h2>
+ </div>
+</div><!-- 9 FINAL --><div class="pantalla oculto" id="p9">
+ <div class="contenido">
+  <img src="https://media1.tenor.com/m/cAnqPmcoOLcAAAAd/mochi-mochi-peach-cat-door.gif">
+ </div>
+</div><!-- NO 1 --><div class="pantalla oculto" id="no1">
+ <div class="contenido">
+  <img src="https://media1.tenor.com/m/g1_tS_VU14YAAAAd/tears-heartbreak.gif">
+  <h2>No puede ser😭</h2>
+  <button onclick="irAP2()">Mentira, te amo</button>
+ </div>
+</div><!-- NO 2 --><div class="pantalla oculto" id="no2">
+ <div class="contenido">
+  <img src="https://media1.tenor.com/m/G8StgJVopSEAAAAd/mochi-mochi-peach-cat-cat.gif">
+  <h2>No me mientas 😭</h2>
+  <button onclick="irAP3()">te amo</button>
+ </div>
 </div><script>
 let animacion;
 
+setTimeout(()=>{cambiar("intro","p1")},3000);
+
 function cambiar(a,b){
-  document.getElementById(a).classList.add("oculto");
-  document.getElementById(b).classList.remove("oculto");
-  clearInterval(animacion);
+ document.getElementById(a).classList.add("oculto");
+ document.getElementById(b).classList.remove("oculto");
+ clearInterval(animacion);
 }
 
-function p2(){cambiar("p1","p2")}
-function p3(){cambiar("p2","p3"); corazones();}
-function p4(){cambiar("p3","p4")}
-function p5(){cambiar("p4","p5")}
-function p6(){cambiar("p5","p6")}
-function p7(){cambiar("p6","p7")}
+function p2(){cambiar("p1","p2");}
+function p3(){cambiar("p2","p3");corazones();}
+function p4(){cambiar("p3","p4");}
+function p5(){cambiar("p4","p5");}
+function p6(){cambiar("p5","p6");}
+function p7(){cambiar("p6","p7");setTimeout(()=>document.getElementById("btnFinal").classList.remove("oculto"),3000)}
+function p8(){cambiar("p7","p8");setTimeout(()=>cambiar("p8","p9"),5000)}
 
-/* NO */
-function noDesde1(){cambiar("p1","no1")}
-function noDesde2(){cambiar("p2","no2")}
+function noDesde1(){cambiar("p1","no1");}
+function noDesde2(){cambiar("p2","no2");}
+function irAP2(){cambiar("no1","p2");}
+function irAP3(){cambiar("no2","p3");}
 
-/* IR SIGUIENTE */
-function irAP2(){cambiar("no1","p2")}
-function irAP3(){cambiar("no2","p3")}
-
-/* CORAZONES (brillos eliminado) */
 function corazones(){
-  animacion = setInterval(()=>{
-    for(let i=0;i<2;i++){
-      let c = document.createElement("div");
-      c.className="corazon";
-      c.textContent="❤";
-      c.style.top=Math.random()*100+"vh";
-      c.style.left=Math.random()*100+"vw";
-      document.body.appendChild(c);
-      setTimeout(()=>c.remove(),3000);
-    }
-  },250);
+ animacion=setInterval(()=>{
+  for(let i=0;i<2;i++){
+   let c=document.createElement("div");
+   c.className="corazon";
+   c.textContent="❤";
+   c.style.top=Math.random()*100+"vh";
+   c.style.left=Math.random()*100+"vw";
+   document.body.appendChild(c);
+   setTimeout(()=>c.remove(),3000);
+  }
+ },250);
 }
 </script></body>
 </html>
