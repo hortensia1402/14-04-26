@@ -159,7 +159,11 @@ function burbujasIntro(){
 }
 window.onload=burbujasIntro;
 
-function p1(){cambiar("intro","p1");clearInterval(burbujasTimer)}
+function p1(){
+ document.getElementById("intro").classList.add("oculto");
+ document.getElementById("p1").classList.remove("oculto");
+ clearInterval(burbujasTimer);
+}
 function p2(){cambiar("p1","p2");}
 function p3(){cambiar("p2","p3");corazones();}
 function p4(){cambiar("p3","p4");}
