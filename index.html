@@ -47,7 +47,7 @@ img {
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
+  gap: 20px;
   width: 100%;
   height: 140px;
 }
@@ -64,15 +64,15 @@ button {
 }
 
 /* BOTON NO */
-#no {
+.no {
   position: fixed;
 }
 
-/* ✨ EFECTO BOTÓN SÍ */
+/* ✨ EFECTO SI */
 @keyframes brilloClick {
-  0% { transform: scale(1); box-shadow: 0 0 0px gold; }
-  50% { transform: scale(1.2); box-shadow: 0 0 20px gold, 0 0 30px yellow; }
-  100% { transform: scale(1); box-shadow: 0 0 0px gold; }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); box-shadow: 0 0 20px gold; }
+  100% { transform: scale(1); }
 }
 
 .brillar {
@@ -89,24 +89,22 @@ button {
 .brillo {
   position: fixed;
   animation: brillo 2s infinite;
-  pointer-events: none;
   color: gold;
   font-size: 20px;
-  text-shadow: 0 0 8px gold, 0 0 12px yellow;
+  pointer-events: none;
 }
 
 /* 💖 CORAZONES */
-@keyframes latir {
-  0% {transform:scale(1);}
-  50% {transform:scale(1.4);}
-  100% {transform:scale(1);}
-}
-
 .corazon {
   position: fixed;
   font-size: 24px;
   animation: latir 1.5s infinite;
-  pointer-events: none;
+}
+
+@keyframes latir {
+  0% {transform:scale(1);}
+  50% {transform:scale(1.4);}
+  100% {transform:scale(1);}
 }
 
 /* SOBRE */
@@ -116,26 +114,13 @@ button {
   max-width: 320px;
 }
 
-.sobre-img {
-  width: 100%;
-}
-
 .papel {
   position: absolute;
   width: 85%;
   left: 7.5%;
   bottom: -160px;
   opacity: 0;
-  transition: all 1s;
-}
-
-.papel img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.abrir .sobre-img {
-  opacity: 0;
+  transition: 1s;
 }
 
 .abrir .papel {
@@ -152,10 +137,9 @@ button {
   <div class="contenido">
     <img src="https://i.imgur.com/2AQnTbl.jpeg">
     <h2>¿Me amas?</h2>
-
     <div class="botones">
       <button onclick="efectoSi(this); p2()">Sí</button>
-      <button id="no">No</button>
+      <button class="no">No</button>
     </div>
   </div>
 </div>
@@ -165,10 +149,9 @@ button {
   <div class="contenido">
     <img src="https://i.imgur.com/k6pzLlN.jpeg">
     <h2>¿de veldad?</h2>
-
     <div class="botones">
       <button onclick="efectoSi(this); p3()">Sí</button>
-      <button id="no">No</button>
+      <button class="no">No</button>
     </div>
   </div>
 </div>
@@ -182,138 +165,65 @@ button {
   </div>
 </div>
 
-<!-- 4 -->
-<div class="pantalla oculto" id="p4">
-  <div class="contenido">
-    <h2>⛔Espera todavía no te vayas ⛔</h2>
-    
-    <button onclick="p5()">ok</button>
-  </div>
-</div>
-
-<!-- 5 -->
-<div class="pantalla oculto" id="p5">
-  <div class="contenido">
-    <img src="https://i.imgur.com/quWVyxf.jpeg">
-    <h2>Tenes un correo</h2>
-    <button onclick="p7()">A ver</button>
-  </div>
-</div>
-
-<!-- FINAL -->
-<div class="pantalla oculto" id="p7">
-  <div class="contenido">
-    <div class="sobre" id="sobre">
-      <img src="https://i.imgur.com/iLFFBoJ.jpeg" class="sobre-img">
-      <div class="papel" id="carta">
-        <img src="https://i.imgur.com/Y7tEZs5.jpeg">
-      </div>
-    </div>
-  </div>
-</div>
-
 <script>
 let animacion;
 
-/* EFECTO BOTON SI */
+/* efecto si */
 function efectoSi(btn){
   btn.classList.add("brillar");
   setTimeout(()=>btn.classList.remove("brillar"),400);
 }
 
-/* CAMBIAR */
+/* cambiar */
 function cambiar(a,b){
   document.getElementById(a).classList.add("oculto");
   document.getElementById(b).classList.remove("oculto");
-  detenerAnimaciones();
+  clearInterval(animacion);
 }
 
 function p2(){cambiar("p1","p2")}
 function p3(){cambiar("p2","p3"); corazones();}
-function p4(){cambiar("p3","p4")}
-function p5(){cambiar("p4","p5")}
-function p7(){
-  cambiar("p5","p7");
-  setTimeout(()=>abrir(),300);
-}
+function p4(){cambiar("p3","p1")}
 
-function abrir(){
-  document.getElementById("sobre").classList.add("abrir");
-}
-
-function detenerAnimaciones(){
-  clearInterval(animacion);
-}
-
-/* ✨ BRILLOS */
+/* ✨ brillos */
 function brillos(){
   animacion = setInterval(()=>{
     let b = document.createElement("div");
     b.className="brillo";
     b.textContent="✦";
-
     b.style.top=Math.random()*100+"vh";
     b.style.left=Math.random()*100+"vw";
-
     document.body.appendChild(b);
     setTimeout(()=>b.remove(),2000);
   },150);
 }
 
-/* 💖 CORAZONES */
+/* 💖 corazones */
 function corazones(){
   animacion = setInterval(()=>{
     let c = document.createElement("div");
     c.className="corazon";
     c.textContent="❤";
-
     c.style.top=Math.random()*100+"vh";
     c.style.left=Math.random()*100+"vw";
-
     document.body.appendChild(c);
     setTimeout(()=>c.remove(),3000);
   },400);
 }
 
-/* 😈 BOTON NO ESCAPA */
-function escapar(btn){
-  let x = Math.random() * (window.innerWidth - btn.offsetWidth);
-  let y = Math.random() * (window.innerHeight - btn.offsetHeight);
-
-  btn.style.left = x + "px";
-  btn.style.top = y + "px";
-}
-
+/* 😈 ESCAPE SOLO DEL BOTON QUE TOCAS */
 document.addEventListener("mousemove", (e)=>{
-  let btn = document.getElementById("no");
-  if(!btn) return;
-
-  let rect = btn.getBoundingClientRect();
-  let dist = Math.hypot(
-    e.clientX - (rect.left + rect.width/2),
-    e.clientY - (rect.top + rect.height/2)
-  );
-
-  if(dist < 100){
-    escapar(btn);
-  }
-});
-
-document.addEventListener("touchmove", (e)=>{
-  let btn = document.getElementById("no");
-  if(!btn) return;
-
-  let touch = e.touches[0];
-  let rect = btn.getBoundingClientRect();
-
-  let dist = Math.hypot(
-    touch.clientX - (rect.left + rect.width/2),
-    touch.clientY - (rect.top + rect.height/2)
-  );
-
-  if(dist < 100){
-    escapar(btn);
-  }
+  document.querySelectorAll(".no").forEach(btn=>{
+    let rect = btn.getBoundingClientRect();
+    let dist = Math.hypot(
+      e.clientX - (rect.left + rect.width/2),
+      e.clientY - (rect.top + rect.height/2)
+    );
+    if(dist < 100){
+      btn.style.left = Math.random()*90 + "vw";
+      btn.style.top = Math.random()*90 + "vh";
+    }
+  });
 });
 
 /* iniciar */
