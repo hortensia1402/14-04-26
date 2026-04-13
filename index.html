@@ -29,7 +29,6 @@ body {
   align-items: center;
   width: 95%;
   max-width: 500px;
-  position: relative;
 }
 
 .oculto {
@@ -43,15 +42,14 @@ img {
   margin-bottom: 15px;
 }
 
-/* BOTONES MÁS A LA IZQUIERDA */
+/* BOTONES */
 .botones {
   position: relative;
   display: flex;
-  justify-content: flex-start;
-  gap: 15px;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 100px;
-  padding-left: 30px;
+  height: 140px;
 }
 
 button {
@@ -65,8 +63,20 @@ button {
   cursor: pointer;
 }
 
+/* BOTON NO */
 #no {
-  position: absolute;
+  position: fixed;
+}
+
+/* ✨ EFECTO BOTÓN SÍ */
+@keyframes brilloClick {
+  0% { transform: scale(1); box-shadow: 0 0 0px gold; }
+  50% { transform: scale(1.2); box-shadow: 0 0 20px gold, 0 0 30px yellow; }
+  100% { transform: scale(1); box-shadow: 0 0 0px gold; }
+}
+
+.brillar {
+  animation: brilloClick 0.4s ease;
 }
 
 /* ✨ BRILLOS */
@@ -81,6 +91,8 @@ button {
   animation: brillo 2s infinite;
   pointer-events: none;
   color: gold;
+  font-size: 20px;
+  text-shadow: 0 0 8px gold, 0 0 12px yellow;
 }
 
 /* 💖 CORAZONES */
@@ -142,8 +154,8 @@ button {
     <h2>¿Me amas?</h2>
 
     <div class="botones">
-      <button onclick="p2()">Sí</button>
-      <button id="no" onmouseover="mover(event)">No</button>
+      <button onclick="efectoSi(this); p2()">Sí</button>
+      <button id="no">No</button>
     </div>
   </div>
 </div>
@@ -155,8 +167,8 @@ button {
     <h2>¿de veldad?</h2>
 
     <div class="botones">
-      <button onclick="p3()">Sí</button>
-      <button id="no" onmouseover="mover(event)">No</button>
+      <button onclick="efectoSi(this); p3()">Sí</button>
+      <button id="no">No</button>
     </div>
   </div>
 </div>
@@ -173,8 +185,8 @@ button {
 <!-- 4 -->
 <div class="pantalla oculto" id="p4">
   <div class="contenido">
-    <h2>⛔</h2>
-    <p>Espera todavía no te vayas...</p>
+    <h2>⛔Espera todavía no te vayas ⛔</h2>
+    
     <button onclick="p5()">ok</button>
   </div>
 </div>
@@ -201,32 +213,21 @@ button {
 </div>
 
 <script>
-let animacionActual;
+let animacion;
 
-/* mover botón */
-function mover(e){
-  let btn = e.target;
-  let cont = btn.parentElement;
-
-  let maxX = cont.offsetWidth - btn.offsetWidth;
-  let maxY = cont.offsetHeight - btn.offsetHeight;
-
-  let x = Math.random() * maxX;
-  let y = Math.random() * maxY;
-
-  btn.style.left = x + "px";
-  btn.style.top = y + "px";
+/* EFECTO BOTON SI */
+function efectoSi(btn){
+  btn.classList.add("brillar");
+  setTimeout(()=>btn.classList.remove("brillar"),400);
 }
 
-/* cambiar pantalla */
+/* CAMBIAR */
 function cambiar(a,b){
   document.getElementById(a).classList.add("oculto");
   document.getElementById(b).classList.remove("oculto");
-
   detenerAnimaciones();
 }
 
-/* pantallas */
 function p2(){cambiar("p1","p2")}
 function p3(){cambiar("p2","p3"); corazones();}
 function p4(){cambiar("p3","p4")}
@@ -240,46 +241,84 @@ function abrir(){
   document.getElementById("sobre").classList.add("abrir");
 }
 
-/* detener animaciones */
 function detenerAnimaciones(){
-  clearInterval(animacionActual);
+  clearInterval(animacion);
 }
 
-/* ✨ BRILLOS SOLO P1 */
+/* ✨ BRILLOS */
 function brillos(){
-  animacionActual = setInterval(()=>{
+  animacion = setInterval(()=>{
     let b = document.createElement("div");
     b.className="brillo";
-    b.innerHTML="✨";
+    b.textContent="✦";
 
     b.style.top=Math.random()*100+"vh";
     b.style.left=Math.random()*100+"vw";
 
     document.body.appendChild(b);
-
     setTimeout(()=>b.remove(),2000);
   },150);
 }
 
-/* 💖 CORAZONES SOLO P3 */
+/* 💖 CORAZONES */
 function corazones(){
-  animacionActual = setInterval(()=>{
+  animacion = setInterval(()=>{
     let c = document.createElement("div");
     c.className="corazon";
-    c.innerHTML="❤️";
+    c.textContent="❤";
 
     c.style.top=Math.random()*100+"vh";
     c.style.left=Math.random()*100+"vw";
 
     document.body.appendChild(c);
-
     setTimeout(()=>c.remove(),3000);
   },400);
 }
 
-/* iniciar solo en p1 */
+/* 😈 BOTON NO ESCAPA */
+function escapar(btn){
+  let x = Math.random() * (window.innerWidth - btn.offsetWidth);
+  let y = Math.random() * (window.innerHeight - btn.offsetHeight);
+
+  btn.style.left = x + "px";
+  btn.style.top = y + "px";
+}
+
+document.addEventListener("mousemove", (e)=>{
+  let btn = document.getElementById("no");
+  if(!btn) return;
+
+  let rect = btn.getBoundingClientRect();
+  let dist = Math.hypot(
+    e.clientX - (rect.left + rect.width/2),
+    e.clientY - (rect.top + rect.height/2)
+  );
+
+  if(dist < 100){
+    escapar(btn);
+  }
+});
+
+document.addEventListener("touchmove", (e)=>{
+  let btn = document.getElementById("no");
+  if(!btn) return;
+
+  let touch = e.touches[0];
+  let rect = btn.getBoundingClientRect();
+
+  let dist = Math.hypot(
+    touch.clientX - (rect.left + rect.width/2),
+    touch.clientY - (rect.top + rect.height/2)
+  );
+
+  if(dist < 100){
+    escapar(btn);
+  }
+});
+
+/* iniciar */
 window.onload = brillos;
 </script>
 
 </body>
-      </html>
+</html>
